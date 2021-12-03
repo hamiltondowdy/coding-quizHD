@@ -9,24 +9,16 @@
 </head>
 
 <body>
-    <header>
-        <h1>View High Scores</h1>
-        <div id ="container">
-            <p id="hour-label" class="label">Hours</p><p id="min-label" class="label">Minutes</p><p id="sec-label" class="label">Seconds</p>
-            <input id="hour" type="number" max="99" min="0" value="1" class="time"><p id="p1" class="semicolon">:</p><input id="minute" type="number" max="60" min="0" value="0" class="time"><p id="p2" class="semicolon">:</p><input id="sec" type="number" max="60" min="0" value="0" class="time">
-            <button id="start" class="btn">Start</button>
-            <button id="reset" class="btn">Reset</button>
-        </div>
-        </header>
-        <a href="Highscores.html">View Highscores</a>
+    <a href="Highscores.html">View Highscores</a>
         <div id="wrapper">
+            <div id="currTime"></div>
             <div id="quizQuestions">
-                <p>Try to answer as many of the following questions within an hour.</p>
+                <h1>Coding Quiz</h1>
+                <p>Test your coding knowledge! Try to answer as many of the following questions as you can within the specified time. There is a 15s limit per question, if you fail to submit an answer for each question within the specified time, 10s will be deducted from your total time limit.</p>
                 <ul id="multChoice"></ul>
                 <button id="startTime">Begin</button>
         </div>
         </div>
-
  <script src="./assets/js/script.js"></script>
 </body>
 </html>
