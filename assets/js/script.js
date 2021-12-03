@@ -41,6 +41,7 @@ function timer(){
     return;
 }
 
-function stopIntercal() {
+function stopInterval() {
     clearInterval(startTimer);
 }
+
