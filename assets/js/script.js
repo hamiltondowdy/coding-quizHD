@@ -57,11 +57,76 @@ timer.addEventListener("click", function () {
         if (secondsLeft <= 0) {
             clearIntercal(holdInterval);
             allDone();
-            currentTime.textContent = "Time's Up!";
+            currTime.textContent = "Time's Up!";
         }
     }, 1000);
 }
-    return(questionIndex);
+    render(questionIndex);
 });
 
+// Adding Questions to webpage
+function render(questionIndex) {
+    quizQuestions.innerHTML = "";
+    ulCreate.innerHTML = "";
+    for (var i = 0; i < questions.length; i++) {
+        var userQuestion = questions[questionIndex].title;
+        var userChoices = questions[questionIndex].choices;
+        quizQuestions.textContent = userQuestion;
+    }
 
+    userChoices.forEach(function (newQ) {
+        var listQ = document.createElement("li");
+        listQ.textContent = newQ;
+        quizQuestions.appendChild(ulCreate);
+        ulCreate.appendChild(listQ);
+        listQ.addEventListener("click", (compare));
+    })
+
+}
+
+// Function to compare answer vs answer
+function compare(event) {
+    var element = event.target;
+
+    if(element.matches("li")) {
+
+        var createDiv = document.createElement("div");
+        createDiv.setAttribute("id", "createDiv");
+        // Correct Answer If
+        if (element.textContent == questions[questionIndex].answer) {
+            score++;
+            createDiv.textContent = "Good Answer! A: " + questions[questionIndex].answer;
+        } else {
+            secondsLeft = secondsLeft - holdPenalty;
+            createDiv.textContent = "Nope! A: " +questions[questionIndex].answer;
+        }
+        }
+
+        questionIndex++;
+
+        if (questionIndex >= questions.length) {
+            allDone();
+            createDiv.textContent = "Pencil's Down. You scored: " + score + "/" + questions.length + " Correct.";
+        } else {
+            render(questionIndex);
+        }
+        quizQuestions.appendChild(createDiv);
+    }
+
+
+// Append page
+function allDone() {
+    quizQuestions.innerHTML = "";
+    currTime.innerHTML = "";
+
+    var createH1 = document.createElement("h1");
+    createH1.setAttribute("id", "createH1");
+    createH1.textContent = "Done!"
+
+    quizQuestions.appendChild(createH1);
+
+    var createP = document.createElement("p");
+    createP.setAttribute("id", "createP");
+
+    quizQuestions.appendChild(createP);
+}
