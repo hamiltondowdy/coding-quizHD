@@ -29,8 +29,8 @@ var questions = [
 var score = 0;
 var questionIndex = 0;
 
-var currTime = document.querySelector("#currtime");
-var timer = document.querySelector("#timer");
+var currTime = document.querySelector("#currTime");
+var timer = document.querySelector("#startTime");
 var quizQuestions = document.querySelector("#quizQuestions");
 var wrapper = document.querySelector("#wrapper");
 
@@ -98,7 +98,7 @@ function compare(event) {
             createDiv.textContent = "Good Answer! A: " + questions[questionIndex].answer;
         } else {
             secondsLeft = secondsLeft - holdPenalty;
-            createDiv.textContent = "Nope! A: " +questions[questionIndex].answer;
+            createDiv.textContent = "Nope! A: " + questions[questionIndex].answer;
         }
         }
 
@@ -129,4 +129,64 @@ function allDone() {
     createP.setAttribute("id", "createP");
 
     quizQuestions.appendChild(createP);
+
+// Function for remaining time
+if (secondsLeft >= 0) {
+    var timeRemaining = secondsLeft;
+    var createP2 = document.createElement("p");
+    clearInterval(holdInterval);
+    createP.textContent = "Your final score is: " + timeRemaining;
+
+    quizQuestions.appendChild(createP2);
+}
+
+/// Label for final score
+var createLabel = document.createElement("label");
+createLabel.setAttribute("id", "createLabel");
+createLabel.textContent = "Enter your nickname: ";
+
+quizQuestions.appendChild(createLabel);
+
+// Input function
+var createInput = document.createElement("input");
+createInput.setAttribute("type", "text");
+createInput.setAttribute("id", "initials");
+createInput.textContent = "";
+
+quizQuestions.appendChild(createInput);
+
+
+// Submit button
+var createSubmit = document.createElement("button");
+createSubmit.setAttribute("type", "submit");
+createSubmit.setAttribute("id", "submit");
+createSubmit.textContent = "Submit";
+
+quizQuestions.appendChild(createSubmit);
+
+//Local Storage connection function
+createSubmit.addEventListener("click", function () {
+    var nickname = createInput.value;
+    if (nickname === null) {
+        console.log("write name to complete")
+    } else {
+        var finalScore = {
+            nickname: nickname,
+            score: timeRemaining
+
+        }
+        console.log(finalScore);
+        var allScores = localStorage.getItem("allScores");
+        if (allScores === null) {
+            allScores = [];
+        } else {
+            allScores = JSON.parse(allScores);
+        }
+        allScores.push(finalScore);
+        var newScore = JSON.stringify(allScores);
+        localStorage.setItem("allScores", newScore);
+        window.location.replace("./Highscores.html");
+    }
+});
+
 }
