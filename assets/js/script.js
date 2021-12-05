@@ -150,7 +150,7 @@ quizQuestions.appendChild(createLabel);
 // Input function
 var createInput = document.createElement("input");
 createInput.setAttribute("type", "text");
-createInput.setAttribute("id", "initials");
+createInput.setAttribute("id", "nickname");
 createInput.textContent = "";
 
 quizQuestions.appendChild(createInput);
