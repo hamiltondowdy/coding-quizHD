@@ -4,3 +4,14 @@ This project was made to test my skills combining Javascript, HTML, and CSS by c
 
 This quiz will prompt the user to begin, and ask them a series of questions regarding basic coding knowledge. This quiz is on a time limit and will penalize the user (10) seconds for each missed question, and will save the users score to a separate webpage in which they will be able to see their improvement over time. 
 
+# Links: 
+
+Live Application Link: https://hamiltondowdy.github.io/coding-quizHD/
+
+Github Repo: https://github.com/hamiltondowdy/coding-quizHD
+
+
+# Project quick-look
+
+![](assets/images/quiz.png)
+
